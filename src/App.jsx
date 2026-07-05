@@ -197,6 +197,31 @@ export default function App() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
+      {/* Deployment Link Banner / PDF Header */}
+      <div style={{
+        background: 'rgba(99, 102, 241, 0.1)',
+        borderBottom: '1px solid rgba(99, 102, 241, 0.2)',
+        padding: '12px 24px',
+        textAlign: 'center',
+        fontSize: '14px',
+        fontFamily: 'var(--font-heading)',
+        color: '#f8fafc',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '8px',
+        zIndex: 100
+      }}>
+        <span>🌐 <strong>Deployment Link:</strong></span>
+        <a href="https://term-4-portofolio.vercel.app/" target="_blank" rel="noopener noreferrer" style={{
+          color: '#6366f1',
+          textDecoration: 'underline',
+          fontWeight: '600'
+        }}>
+          https://term-4-portofolio.vercel.app/
+        </a>
+      </div>
+
       {/* Hero Section */}
       <section style={{ padding: '80px 0 40px 0', position: 'relative' }}>
         {/* Glow circles */}
