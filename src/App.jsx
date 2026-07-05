@@ -441,7 +441,7 @@ export default function App() {
             Interactive exploration of the Experiential Learning stages.
           </p>
 
-          <div className="glass-panel" style={{ padding: '40px' }}>
+          <div className="glass-panel no-print" style={{ padding: '40px' }}>
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -487,6 +487,22 @@ export default function App() {
               </p>
             </div>
           </div>
+
+          {/* Print only layout: showing all Kolb stages consecutively */}
+          <div className="print-only">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+              {Object.keys(kolbCycle).map(stageKey => (
+                <div key={stageKey} className="glass-panel" style={{ padding: '24px', pageBreakInside: 'avoid' }}>
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '18px', fontWeight: 600, marginBottom: '12px', color: '#f9fafb' }}>
+                    {kolbCycle[stageKey].title}
+                  </h3>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: 1.6 }}>
+                    {kolbCycle[stageKey].desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -500,7 +516,7 @@ export default function App() {
             Select a technical elective from the sidebar below to review its comprehensive syllabus, skills, and academic links.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: '32px' }} className="grid-2">
+          <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: '32px' }} className="grid-2 no-print">
 
             {/* Sidebar list */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -636,6 +652,99 @@ export default function App() {
 
             </div>
 
+          </div>
+
+          {/* PDF/Print-only layout showing all workshops compiled */}
+          <div className="print-only">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+              {workshops.map((w, index) => (
+                <div key={index} className="glass-panel" style={{ padding: '30px', pageBreakInside: 'avoid', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', background: 'rgba(15, 23, 42, 0.85)', marginBottom: '20px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+                    <div style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '8px',
+                      background: 'var(--primary-color)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'white'
+                    }}>
+                      <Icon name={w.icon} size={18} />
+                    </div>
+                    <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '20px', fontWeight: 700, color: '#f8fafc' }}>
+                      {index + 1}. {w.title}
+                    </h3>
+                  </div>
+
+                  <div style={{
+                    background: 'rgba(255,255,255,0.02)',
+                    border: '1px solid rgba(255,255,255,0.05)',
+                    borderRadius: '8px',
+                    padding: '10px 14px',
+                    fontSize: '13px',
+                    color: 'var(--text-secondary)',
+                    marginBottom: '20px'
+                  }}>
+                    <strong>Event Snapshot:</strong> {w.snapshot}
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    {[
+                      { section: "B. Event Overview", text: w.overview },
+                      { section: "C. My Participation", text: w.participation },
+                      { section: "D. Concepts & Skills Explored", text: w.skills, isHighlight: true },
+                      { section: "E. What I Learned", text: w.learned },
+                      { section: "F. Challenges & Observations", text: w.challenges },
+                      { section: "G. Connection to Academic Field", text: w.academicConnection },
+                      { section: "H. Practical Application", text: w.practical },
+                    ].map((sec, idx) => (
+                      <div key={idx} style={{
+                        borderLeft: sec.isHighlight ? '3px solid var(--secondary-color)' : '2px solid rgba(255,255,255,0.06)',
+                        paddingLeft: '12px'
+                      }}>
+                        <h4 style={{
+                          fontFamily: 'var(--font-heading)',
+                          fontSize: '12px',
+                          fontWeight: 700,
+                          color: sec.isHighlight ? 'var(--secondary-color)' : 'var(--text-primary)',
+                          textTransform: 'uppercase',
+                          marginBottom: '4px'
+                        }}>
+                          {sec.section}
+                        </h4>
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{sec.text}</p>
+                      </div>
+                    ))}
+
+                    <div style={{
+                      background: 'rgba(245, 158, 11, 0.03)',
+                      border: '1px solid rgba(245, 158, 11, 0.12)',
+                      borderRadius: '8px',
+                      padding: '16px',
+                      marginTop: '8px'
+                    }}>
+                      <h4 style={{
+                        fontFamily: 'var(--font-heading)',
+                        fontSize: '12px',
+                        fontWeight: 700,
+                        color: '#f59e0b',
+                        textTransform: 'uppercase',
+                        marginBottom: '6px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px'
+                      }}>
+                        <Icon name="fileText" size={12} /> I. Personal Reflection
+                      </h4>
+                      <p style={{ color: 'var(--text-primary)', fontSize: '14px', fontStyle: 'italic' }}>
+                        "{w.personalReflection}"
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
