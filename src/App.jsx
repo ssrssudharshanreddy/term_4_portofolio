@@ -85,7 +85,8 @@ export default function App() {
     section: "CSE-CORE-1E",
     year: "1st Year",
     academicYear: "2025-2026",
-    center: "Centre for Talent Enrichment (CTE)"
+    center: "Centre for Talent Enrichment (CTE)",
+    elective: "Sports"
   };
 
   // Workshops Data
@@ -291,7 +292,8 @@ export default function App() {
                   { label: "Registration No.", value: student.regNo },
                   { label: "Degree Program", value: student.program },
                   { label: "Section / Group", value: student.section },
-                  { label: "Academic Year", value: student.academicYear }
+                  { label: "Academic Year", value: student.academicYear },
+                  { label: "Talent Enrichment Elective Name", value: student.elective }
                 ].map((item, index) => (
                   <div key={index} style={{
                     display: 'flex',
