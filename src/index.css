@@ -171,3 +171,18 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+@media print {
+  body, html {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: #060913 !important;
+    color: #f8fafc !important;
+  }
+  .glass-panel {
+    background: rgba(15, 23, 42, 0.85) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
